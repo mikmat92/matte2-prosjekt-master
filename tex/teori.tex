@@ -1,0 +1,107 @@
+\section{Teori og metode}
+\label{sec:teori}
+\subsection{Euler-Bernoullibjelken}
+Euler-Bernoullibjelken er en modell som beskriver hvordan materialer bøyer seg under belastning. Den vertikale forskyvningen \textit{y(x), 0 $\leq$ x $\leq$ L} for en bjelke av lengde \textit{L}, tilfredsstiller differensialligningen
+\begin{quote}
+\begin{equation}\label{eq:eulerbernoulli}
+EIy'''' = f(x)
+\end{equation}
+\end{quote}
+hvor \textit{E} er materialets Youngmodulus, \textit{I} er bjelkens arealmoment. Disse er konstante langs bjelkens lengderetning. Ligningens høyreside \textit{f(x)} er den påførte belastningen, inkludert bjelkens egenvekt. \cite[s.~102]{mattebok} \\
+
+For å løse dette numerisk, ønsker vi å finne en diskretisering av \textit{y\textsuperscript{(4)}(x)}, og betrakte bjelken som unionen av segmenter med lengde \textit{h}. Vi beviser i \ref{sec:oppg1} at den diskretiserte formelen for \textit{y\textsuperscript{(4)}(x)} er:
+\begin{quote}
+\begin{equation} \label{eq:y''''}
+y^{(4)}(x) = \frac{y(x+2h)-4y(x-h)+6f(x)-4y(x+h)+y(x+2h)}{h^4}
+\end{equation}
+\end{quote}
+med et feilledd proporsjonalt med \textit{h\textsuperscript{2}}.\\
+Vi deler bjelken inn i \textit{n > 0} like deler, slik at \textit{h = L/n}. La så \textit{x\textsubscript{i} = i $\cdot$ h, i = 0, 1, 2, ... , n}. Da har vi at \textit{h = x\textsubscript{i} - x\textsubscript{i-1}}, for \textit{i = 1, 2,..., n}. La også \textit{y\textsubscript{i} = y(x\textsubscript{i})}. Setter vi dette inn i ligning (\ref{eq:y''''}), får vi
+
+\begin{align*}
+y^{(4)}(x_i)& = \frac{y(x_i-2(x_i-x_{i-1}))-4y(x_i-(x_i-x_{i-1}))+6y(x_i)-4y(x_i+(x_i-x_{i-1}))+y(x_i+2(x_i-x_{i-1}))}{h^4} \\
+&= \frac{y(-x_i+2x_{i-1})-4y(x_{i-1})+6y(x_i)-4y(2x_i-x_{i-1})+y(3x_i-x_{i-1})}{h^4} \\
+&= \frac{y(x_{i-2})-4y(x_{i-1})+6y(x_{i-1})-4y(x_{i+1})+y(x_{i+2})}{h^4} \\
+&= \frac{y_{i-2} - 4y_{i-1} + 6y_i - 4y_{i+1} + y_{i+2}}{h^4} \numberthis \label{eq:y4discr}
+\end{align*}
+
+Til slutt setter vi sammen ligning (\ref{eq:y4discr}) og ligning (\ref{eq:eulerbernoulli}):
+\begin{center}
+\begin{gather*}
+EIy^{4}(x_i) = f(x_i) \\
+EI \frac{y_{i-2} - 4y_{i-1} + 6y_i - 4y_{i+1} + y_{i+2}}{h^4} = f(x_i) \\
+y_{i-2} - 4y_{i-1} + 6y_i - 4y_{i+1} + y_{i+2} = \frac{h^4}{EI}f(x_i) \numberthis \label{eq:eulerbernoullidiscrete}
+\end{gather*}
+\end{center}
+
+Dette gjør oss i stand til å lage \textit{n} ligninger for de \textit{n} utkjente \textit{y\textsubscript{1}, ... , y\textsubscript{n}}, ved hjelp av en matriseligning på formen \textit{A\textbf{y} = \textbf{f}}, hvor \textit{\textbf{f}=}[\textit{f(x\textsubscript{1}), f(x\textsubscript{2}), ... , f(x\textsubscript{n})}]\textsuperscript{\textit{T}}, og koeffisientmatrisa \textit{A} er koeffisientene til venstresiden av ligning (\ref{eq:eulerbernoullidiscrete}).\\
+
+Vi ser at ligning (\ref{eq:eulerbernoullidiscrete}) er problematisk i endene av bjelken, hvor \textit{y\textsubscript{i-2}} og \textit{y\textsubscript{i-1}} eller \textit{y\textsubscript{i+2}} og \textit{y\textsubscript{i+1}} ikke er definert. I denne oppgaven skal vi ta for oss en bjelke som er fastmontert i den ene enden og fri i den andre, som et stupebrett. For en slik bjelke er randtilstandene slik at
+\begin{equation*}
+y(0) = y'(0) = y''(L) = y'''(L) = 0
+\end{equation*}
+Altså har vi at \textit{y\textsubscript{0}=0}, men \textit{y\textsubscript{1}} vil være avhengig av den udefinerte \textit{y\textsubscript{-1}}. I \ref{sec:oppg1} beviser vi at en annen approksimasjon av \textit{y\textsuperscript{(4)}(x)} er
+\begin{equation} \label{eq:y4xapprox2}
+y^{(4)}(x) = \frac{16y(x) - 9y(x+h) +\frac{8}{3}y(x+2h)-\frac{1}{4}y(x+3h)}{h^4} + O(h^2)
+\end{equation}
+som er gyldig når \textit{y(x\textsubscript{0}) = y'(x\textsubscript{0}) = 0}. Vi gir denne ligningen samme behandling som (\ref{eq:y''''}) og setter inn \textit{x = x\textsubscript{1}, h = x\textsubscript{1} - x\textsubscript{0}}, og ender da opp med uttrykket
+\begin{equation}\label{eq:y4x1}
+y^{(4)}(x_1) = \frac{16y_1 - 9y_2 +\frac{8}{3}y_3-\frac{1}{4}y_4}{h^4}
+\end{equation}
+Vi setter dette inn i ligning (\ref{eq:eulerbernoulli}), og får ligningen for \textit{y\textsubscript{1}}:
+\begin{equation} \label{eq:eulerbernoullix1}
+16y_1 - 9y_2 + \frac{8}{3}y_3 - \frac{1}{4}y_4 = \frac{h^4}{EI}f(x_1)
+\end{equation}
+
+For å finne et uttrykk i for avbøyningen i den frie enden av bjelken, trenger vi igjen nye approksimasjoner av \textit{y\textsuperscript{(4)}(x)}, fordi ligning (\ref{eq:y4xapprox2}) er avhengig av \textit{y\textsubscript{i+1}} og \textit{y\textsubscript{i+2}}, som åpenbart ikke er definert for \textit{x\textsubscript{n-1}} og  \textit{x\textsubscript{n}}. I \ref{sec:oppg1} beviser vi også at approksimasjonene 
+\begin{equation*}
+y^{(4)}(x_{n-1}) = \frac{-28y_n + 72y_{n-1} -60y_{n-2}+16y_{n-3}}{17h^4} + O(h^2)
+\\
+y^{(4)}(x_{n}) = \frac{72y_n -156y_{n-1} +96y_{n-2}-12y_{n-3}}{17h^4} + O(h^2)
+\end{equation*}
+er gyldige når \textit{y''(x\textsubscript{n}) = y'''(x\textsubscript{n}) = 0}.\\
+
+Nå har vi altså \textit{n} ligninger for de \textit{n} ukjente \textit{y\textsubscript{n}}:
+\begin{align*}
+&16y_1 - 9y_2 + \frac{8}{3}y_3 - \frac{1}{4}y_4 = \frac{h^4}{EI}f(x_1) \\
+&y_{i-2} - 4y_{i-1} + 6y_i - 4y_{i+1} + y_{i+2} = \frac{h^4}{EI}f(x_i),\quad i = 1, 2,..., n-2 \\
+&\frac{-28y_n + 72y_{n-1} -60y_{n-2}+16y_{n-3}}{17} = \frac{h^4}{EI}f(x_{n-1}) \\
+&\frac{72y_n -156y_{n-1} +96y_{n-2}-12y_{n-3}}{17} = \frac{h^4}{EI}f(x_{n})\\
+\end{align*}
+
+Dette kan skrives mer kompakt som en matriseligning:
+\begin{equation}
+\begin{bmatrix}
+16	& -9	& \frac{8}{3}	& -\frac{1}{4}	&	&	&	&	&\\
+-4	& 6		& -4			& 1				&	&	&	&	&\\
+1	& -4	& 6				& -4			& 1	&	&	&	&\\
+	& 1		& -4			& 6				&-4	& 1	&	&	&\\
+	&  & \ddots		&\ddots			&\ddots	&\ddots	&\ddots	&\\
+	&		& 1	& -4	& 6				& -4			& 1	&\\
+	&		&	& 1	& -4	& 6				& -4			& 1\\
+	&	&	&	&	&\frac{-12}{17}	&\frac{96}{17}	&\frac{-156}{17}	&\frac{72}{17}\\
+	&	&	&	&	&\frac{16}{17}	&\frac{-60}{17}	&\frac{72}{17}	&\frac{-28}{17}\\
+\end{bmatrix}
+\begin{bmatrix}
+y_1\\
+y_2\\
+\vdots\\
+\\
+\vdots\\
+\\
+\vdots\\
+y_{n-1}\\
+y_n\\
+\end{bmatrix} =
+\begin{bmatrix}
+f(x_1)\\
+f(x_2)\\
+\vdots\\
+\\
+\vdots\\
+\\
+\vdots\\
+f(x_{n-1})\\
+f(x_n)\\
+\end{bmatrix}
+\end{equation}

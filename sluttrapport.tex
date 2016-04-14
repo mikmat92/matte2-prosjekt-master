@@ -1,0 +1,161 @@
+% latexmal.tex - Mal beregnet for bruk i INF1080
+% Time-stamp: <2012-08-27 11:08:39>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Dette dokumentet har innstillinger som fungerer på Ifi-serverne.
+% Du kan lage en pdf-fil av denne filen med:
+%  pdflatex latexmal.tex
+%
+% Et LaTeX-dokument har to deler. Først skriver du inn ting som
+% gjelder hele dokumentet, blant annet hvilke pakker du skal bruke.
+% Så kommer selve innholdet, mellom \begin{document} og \end{document}
+%
+% Husk at tegnene: # $ % ^ & _ { } ~ og \ har spesiell betydning.
+%
+% For mer hjelp og mer info om hvordan du kan stille inn dokumentet
+% er disse sidene bra:
+% http://www.mn.uio.no/ifi/tjenester/it/hjelp/latex/
+% http://en.wikibooks.org/wiki/LaTeX/
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 1. Hva slags dokument.
+\documentclass[12pt,norsk,a4paper]{article}
+\usepackage{float}
+
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+%\usepackage{apacite}
+%\usepackage{mathtools}
+\usepackage{amsmath}
+% For eget tittelblad: legg ,titlepage til rett etter a4paper
+% For tosidig: legg til ,twopage
+
+
+% 3. Norske tegn og norsk utseende
+
+% 3a. Tekstfiler med norske tegn kan lagres i utf-8 eller iso-latin-1
+% (iso-8859-1). På Ifi-maskinene er iso-8859-1/15 standard.
+\usepackage[utf8]{inputenc} % evt utf8 i stedet for latin1
+%\DeclareUnicodeCharacter{030A}{~}
+
+% Please add the following required packages to your document preamble:
+\usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\usepackage{listings}
+%\usepackage[title]{appendix}
+% 2. Om dokumentet - brukes blant annet til tittelen
+\title{Prosjektoppgave TDAT2002}
+\author{Andreas Børsheim, Markus Markussen,\\
+		Mikael Mathisen, Eirik Nielsen}
+\date{\today}
+
+
+% 3b. For norsk orddeling og dato
+\usepackage[norsk]{babel}
+\usepackage[norsk]{isodate}
+
+% 3c. For norske tegn
+\usepackage[T1]{fontenc}
+
+% 3d. For parallelle avsnitt (fint i INF1080, men ikke så fint i vanlige artikler)
+\usepackage{parskip}
+
+% 3e. For å formattere URL-er.
+%\usepackage{url}
+
+% 4. Skrifttype og symboler
+\usepackage[small,euler-digits]{eulervm}
+%\usepackage[bitstream-charter]{mathdesign}
+\usepackage{color}
+
+% 5. For litt mindre marger enn standard i LaTeX
+\usepackage{a4wide}
+\usepackage[top=2cm, margin=1.5cm]{geometry}
+
+% 6. Figurer og bilder
+
+% 6a. For å bryte tekst rundt en figur
+%\usepackage{wrapfig}
+
+% 6b. For bilder - med denne pakken kan du legge inn bilder og
+% illustrasjoner slik:
+%                  \includegraphics[width=.5\textwidth]{bilde.pdf}
+\usepackage{graphicx}
+\graphicspath{ {img/} }
+
+% 7. For grafer og slikt
+%\usepackage{tikz}
+%\usetikzlibrary{trees}
+% Det fins mange tikz-bibliotek, det er nesten ingen grenser for hva
+% du kan lage med dette. Se http://www.texample.net/tikz/
+%\usepackage[]{mcode}
+% 8. Egendefinerte kommandoer kan du legge inn slik:
+\newcommand{\tuple}[1]{\ensuremath{\langle #1\rangle}}
+\newcommand{\set}[1]{\ensuremath{\{#1\}}}
+\newcommand{\imp}{\ensuremath{\rightarrow}}
+\newcommand{\M}{\ensuremath{\mathcal{M}}}
+\newcommand{\AF}{edge from parent[draw=none]}
+\newcommand{\NODE}[1]{\{node \{\ensuremath{#1}\}\}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+% http://en.wikibooks.org/wiki/LaTeX/Customizing_LaTeX#New_commands
+\usepackage{textcomp}
+\lstset{extendedchars=\true}
+\lstset{inputencoding=latin1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Selve innholdet:
+\begin{document}
+
+% a. Lager en tittel på dokumentet.
+\maketitle
+% a. For å få bokstavnummerering på 'subsection's
+%\renewcommand{\thesubsection}{(\alph{subsection})}
+%\vspace{20mm}
+
+\newpage
+\textbf{Revisjonshistorie} \\
+\begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Dato} & \textbf{Versjon} & \textbf{Beskrivelse} & \textbf{Forfatter} \\
+    \hline
+    4 Mars 2016 & 0.1 & Første versjon & ESN \\
+    \hline
+    3 April 2016 & 0.2 & Andre versjon & ESN \\
+    \hline
+\end{tabular}
+\newpage
+\tableofcontents
+%\listoffigures
+%\listoftables
+\newpage
+
+\include{tex/innledning}
+\newpage
+\input{tex/teori}
+\newpage
+\input{tex/oppgaver}
+\newpage
+
+\appendix
+\section{Oppgave 2, Matlabkode}\label{app:oppg2}
+\lstinputlisting{matlab/lagA.m}
+\section{Oppgave 3, Matlabkode}\label{app:oppg3}
+\lstinputlisting{matlab/eulerbernoulli.m}
+\lstinputlisting{matlab/Oppgave3.m}
+\section{Oppgave 5, Matlabkode}\label{app:oppg5}
+\lstinputlisting{matlab/Oppgave5.m}
+\bibliographystyle{abbrv}
+\bibliography{bib/refs}
+
+
+\end{document}

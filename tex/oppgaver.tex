@@ -1,0 +1,276 @@
+\section{Oppgaver}
+\subsection{Oppgave 1}\label{sec:oppg1}
+\subsubsection{5.1.21}
+Vi benytter oss av Taylor's teorem:
+\begin{quote}
+Dersom \textit{f(x)} er \textit{k} ganger deriverbar på intervallet [\textit{x}, \textit{x\textsubscript{0}}], finnes det et tall \textit{c} slik at
+\begin{equation} \label{eq:taylor}
+f(x) = \sum_{n=0}^k	(\frac{f^{(k)}(x_{0}}{n!} (x-x_{0})^{k}) + \frac{f^{(k+1)}(c)}{(k+1)!}(x-x_{0})^{(k+1)}
+\end{equation}
+\end{quote}
+
+La \textit{x = x $\pm$ h} og \textit{x\textsubscript{0} = x}. Taylorpolynomet av 5. grad blir da
+\begin{quote}
+\begin{equation} \label{eq:x+h}
+f(x+h) = f(x) + f'(x)h + \frac{f''(x)}{2}h^2 + \frac{f'''(x)}{6}h^3 + \frac{f^{(4)}(x)}{24}h^4 + \frac{f^{(5)}(x)}{120}h^5 + \frac{f^{(6)}(c)}{720}h^6
+\end{equation}
+\begin{equation} \label{eq:x-h}
+f(x-h) = f(x) - f'(x)h + \frac{f''(x)}{2}h^2 - \frac{f'''(x)}{6}h^3 - \frac{f^{(4)}(x)}{24}h^4 - \frac{f^{(5)}(x)}{120}h^5 + \frac{f^{(6)}(c)}{720}h^6
+\end{equation}
+\end{quote}
+
+Vi ønsker å kvitte oss med alle deriverte utenom fjerdederiverte, så vi evaluerer (\ref{eq:x+h}) + (\ref{eq:x-h}) og får
+\begin{quote}
+\begin{equation} \label{eq:x+-h-sum}
+f(x+h)+f(x-h) = 2f(x) + f''(x)h^2 + \frac{f^{(4)}(x)}{12}h^4 + \frac{f^{(6)}(c)}{360}h^6
+\end{equation}
+\end{quote}
+
+Nå ser vi at vo har kvittet oss med alle deriverte utenom fjerde og andre grad. Vi utvikler så Taylorpolynomet av 5. grad med \textit{x = x $\pm$ 2h} og \textit{x\textsubscript{0} = x}:
+
+\begin{quote}
+\begin{equation} \label{eq:x+2h}
+f(x+2h) = f(x) + f'(x)2h + \frac{f''(x)}{2}4h^2 + \frac{f'''(x)}{6}8h^3 + \frac{f^{(4)}(x)}{24}16h^4 + \frac{f^{(5)}(x)}{120}32h^5 + \frac{f^{(6)}(c)}{720}64h^6
+\end{equation}
+\begin{equation} \label{eq:x-2h}
+f(x-2h) = f(x) - f'(x)2h + \frac{f''(x)}{2}4h^2 - \frac{f'''(x)}{6}8h^3 + \frac{f^{(4)}(x)}{24}16h^4 - \frac{f^{(5)}(x)}{120}32h^5 + \frac{f^{(6)}(c)}{720}64h^6
+\end{equation}
+\end{quote}
+
+På samme måte som vi fikk ligning (\ref{eq:x+-h-sum}), evaluerer vi (\ref{eq:x+2h})+(\ref{eq:x-2h}):
+\begin{quote}
+\begin{equation} \label{eq:x+-2h-sum}
+f(x+2h)+f(x-2h) = 2f(x) + f''(x)4h^2 + \frac{f^{(4)}(x)}{12}16h^4 + \frac{f^{(6)}(c)}{360}64h^6
+\end{equation}
+\end{quote}
+
+For å eliminere andrederivertleddet, evaluerer vi 4 $\cdot$ (\ref{eq:x+-h-sum}) - (\ref{eq:x+-2h-sum}):
+\begin{quote}
+\begin{equation} \label{eq:finalSum}
+4f(x+h) + 4f(x-h) - f(x+2h) - f(x-2h) = 6f(x) - h^4f^{(4)}(x) - \frac{f^{(6)}(c)}{6}h^6
+\end{equation}
+\end{quote}
+
+Vi løser så denne med hensyn på \textit{f\textsuperscript{(4)}(x)}:
+\begin{quote}
+\begin{equation}
+f^{(4)}(x) = \frac{f(x+2h)-4f(x-h)+6f(x)-4f(x+h)+f(x+2h)-\frac{f^{(6)}(c)}{6}h^2}{h^4}
+\end{equation}
+\end{quote}
+
+Ser at restleddet $\frac{f^{(6)}(c)}{6}h^2 \in O(h^2)$, dvs
+\begin{quote}
+\begin{equation} \label{eq:fjerdederivert}
+f^{(4)}(x) = \frac{f(x+2h)-4f(x-h)+6f(x)-4f(x+h)+f(x+2h)}{h^4} + O(h^2)
+\end{equation}
+\end{quote}
+
+\subsubsection{5.1.22a}
+
+Skal vise at hvis $f(x)=f'(x)=0$, så er:
+\begin{quote}
+\begin{equation}
+f^{(4)}(x+h) = \frac{16f(x+h)-9f(x+2h)+\frac{8}{3}f(x+3h)-\frac{1}{4}f(x+4h)}{h^4}=O(h^2)
+\end{equation}
+\end{quote}
+
+Har fra oppgave 5.1.21 at:
+
+\begin{quote}
+\begin{equation}
+f^{(4)}(x)=\frac{f(x-2h)-4f(x-h)+6f(x)-4f(x+h)+f(x+2h)}{h^4}+O(h^2)
+\end{equation}
+\end{quote}
+
+Gjør om uttrykket ved å sette inn h, og får:
+
+\begin{quote}
+\begin{equation}
+f^{(4)}(x+h)=\frac{f(x-2h+h)-4f(x-h+h)+6f(x+h)-4f(x+h+h)+f(x+2h+h)}{h^4}+O(h^2)
+\end{equation}
+\end{quote}
+\begin{quote}
+\begin{equation}
+f^{(4)}(x+h)=\frac{f(x-h)-4f(x)+6f(x+h)-4f(x+2h)+f(x+3h)}{h^4}+O(h^2)
+\end{equation}
+\end{quote} 
+
+Setter inn dette for $f^{(4)}(x+h)$ i likning 1, og får:
+
+\begin{quote}
+\begin{equation}
+\frac{f(x-h)-4f(x)+6f(x+h)-4f(x+2h)+f(x+3h)}{h^4}+O(h^2)= \frac {16f(x+h)-9f(x+2h)+\frac{8}{3}f(x+3h)-\frac{1}{4}f(x+4h)}{h^4}=O(h^2) 
+\end{equation}
+\end{quote}
+
+\begin{quote}
+\begin{equation}
+\frac{-4(x)+f(x+h)+6f(x+h)-16f(x+h)-4f(x+2h)+9f(x+2h)+f(x+3h)-\frac{8}{3}f(x+3h)-\frac{1}{4}f(x+4h)+O(h^2}{h^4}
+\end{equation}
+\end{quote}
+\begin{quote}
+\begin{equation}
+\frac{-4(x)+f(x+h)-10f(x+h)+5f(x+2h)-\frac{5}{3}f(x+3h)+\frac{1}{4}f(x+4h)+O(h^2}{h^4}=O(h^2)
+\end{equation}
+\end{quote}
+Vi har også fra 5.1.21 at hvis $f(x)=f'(x)=0$ så er:
+\begin{quote}
+\begin{equation}
+f(x-h)-10f(x+h)+5f(x+2h)-\frac{5}{3}f(x+3h)+\frac{1}{4}f(x+4h)=O(h^6)
+\end{equation}
+\end{quote}
+
+Ser at dette stemmer med det vi allerede har, setter inn og får:
+
+\begin{quote}
+\begin{equation}
+\frac{-4(x)+O(h^6)+O(h^2)}{h^4}=O(h^2)
+\end{equation}
+\end{quote}
+
+\begin{quote}
+\begin{equation}
+0+O(h^{(6-4)}+O(h^2)=O(h^2)
+\end{equation}
+
+\begin{equation}
+O(h^2)=O(h^2)
+\end{equation}
+\end{quote}
+
+\subsection{Oppgave 6 a}\label{sec:oppg6}
+Vi skal legge til en sinusformet haug på bjelken. Det betyr at vi legger til en funksjon 
+\begin{equation} \label{eq:sinuslast}
+s(x) = -pgsin\frac{\pi}{L}x
+\end{equation}
+til kraftdelen til \textit{f(x)}
+
+Vi skal vise at \begin{equation}
+y(x) = \frac{f}{24EI}x^{2}(x^2-4Lx+6L^2)-\frac{gpL}{EI\pi}(\frac{L^3}{\pi^3}sin\frac{\pi}{L}x-\frac{x^3}{6}+\frac{Lx^2}{2}-\frac{L^2x}{\pi^2})
+\end{equation}
+tilfredsstiller Euler-Bernoulli-likningen og randbetingelsene for en bhelke som er festet i den ene enden og fri i den andre: \begin{equation} \label{eq:randbetingelserBjelke}
+y(0)=y'(0)=y''(L)=y'''(L)=0
+\end{equation}
+
+Setter vi sammen ligning (\ref{eq:eulerbernoulli}) og ligning (\ref{eq:sinuslast}) 
+Dette gir oss likningen 
+\begin{equation} \label{eq:sinusLikning}
+EIy''''=-pgsin\frac{\pi}{L}x
+\end{equation}
+
+For å finne \textit{y(x)} må vi integrere likning (\ref{eq:sinusLikning}) fire ganger. Dette gir oss:
+
+\begin{equation}
+EIy'''(x)=\frac{L}{\pi}pgcos(\frac{\pi}{L}x)+C_1
+\end{equation}
+\begin{equation}
+EIy''(x)=\frac{L^2}{\pi^2}pgsin(\frac{\pi}{L}x)+C_1x+C_2
+\end{equation}
+\begin{equation}
+EIy'(x)=-\frac{L^3}{\pi^3}pgcos(\frac{\pi}{L}x)+\frac{1}{2}C_1x^2+C_2x+C_3
+\end{equation}
+\begin{equation}
+EIy(x)=-\frac{L^4}{\pi^4}pgsin(\frac{\pi}{L}x)+\frac{1}{3}C_1x^3+\frac{1}{2}C_2x^2+C_3x+C_4)
+\end{equation}
+
+Ut fra randbetingelsene i ligning (\ref{eq:randbetingelserBjelke}) gir dette oss følgende:
+
+\begin{equation}
+y''''(L)=0 \rightarrow \frac{L}{EI\pi}pgcos(\pi)+C_1 \rightarrow \frac{L}{EI\pi}pg=C_1
+\end{equation}
+
+\begin{equation}
+y'''(L)=0 \rightarrow \frac{L^2}{\pi^2}pgsin(\pi)+C_1x+C_2 \rightarrow C_2=-\frac{pgL^2}{EI\pi}
+\end{equation}
+
+\begin{equation}
+y''(0)=0 \rightarrow -\frac{L^3}{\pi^3}pgcos(\pi)+C_3 \rightarrow C_3=\frac{L^3pg}{\pi^3}
+\end{equation}
+
+\begin{equation}
+y'(0)=0 \rightarrow C_4=0
+\end{equation}
+
+Dette gir oss følgende ligning for \textit{y(x)}:
+
+\begin{equation}
+y(x)=\frac{1}{EI}(-\frac{L^4}{\pi^4}pgsin(\frac{\pi}{L}x)+\frac{L}{6\pi}pgx^3-\frac{L^2}{2\pi}pgx^2+\frac{L^3}{\pi^3}pgx)
+\end{equation}
+
+Vi ser at alle leddene har \textit{pgL} og $\frac{1}{\pi}$ til felles så vi trekker dette på utsiden av parentesen. I tillegg vil vi ha \textit{y(x)} alene på venstre side. 
+
+\begin{equation}
+y(x)=-\frac{pgL}{EI\pi}(\frac{L^3}{\pi^3}sin(\frac{\pi}{L}x)-\frac{x^3}{6}+\frac{1}{2}Lx^2+\frac{L^2}{\pi^2}x)
+\end{equation}
+
+Denne delen legges til bak det vi har vist i oppgave 4 a) og vi får:
+
+\begin{equation}
+y(x) = \frac{f}{24EI}x^{2}(x^2-4Lx+6L^2)-\frac{gpL}{EI\pi}(\frac{L^3}{\pi^3}sin\frac{\pi}{L}x-\frac{x^3}{6}+\frac{Lx^2}{2}-\frac{L^2x}{\pi^2})
+\end{equation}
+
+Hvilket skulle vises.
+
+\subsection{Oppgave 4 a}\label{sec:oppg4}
+
+Den korrekte løsningen av likningen med konstant \textit{f(x)=f} er
+
+\begin{equation}
+y(x)=(\frac{f}{24EI})x^2(x^2-4Lx+6L^2)
+\end{equation}
+
+Dette skal vi vise ved å derivere 4 ganger.
+
+Først skriver vi om likningen
+
+\begin{equation}
+y(x)=\frac{fx^2(x^2-4Lx+6L^2}{24EI}
+\end{equation}
+
+Løser opp parentesen og får:
+
+\begin{equation}
+y(x)=\frac{fx^4-4fLx^3+6fL^2x^2}{24EI}
+\end{equation}
+
+Så deriverer vi fortløpende:
+
+\begin{equation}
+y'(x)=\frac{4fx^3-12fLx^2+12fL^2x}{24EI} = \frac{4(fx^3-fLx^2+3fL^2x}{24EI}
+\end{equation}
+\begin{equation}
+\frac{fx^3-3fLx^2+3fL^2x}{6EI}
+\end{equation}
+
+\begin{equation}
+y''(x) = \frac{3fx^2-6fLx+3fL^2}{6EI} = \frac{3(fx^2-2fLx+fL^2}{2EI}
+\end{equation}
+
+\begin{equation}
+y'''(x) = \frac{2fx-2fL}{2EI} = \frac{fx-fL}{EI}
+\end{equation}
+
+\begin{equation}
+y''''(x) = \frac{f}{EI} = \frac{f(x)}{EI}
+\end{equation}
+
+Hvilket skulle vises.
+
+\subsection{Oppgave 4 b}\label{sec:oppg4}
+Som gitt i oppgaveteksten har utledningen av formlene for de deriverte brukt Taylors formel med feilledd:
+\begin{equation}
+\frac{y^{(6)}*(c)}{6!} * h^6
+\end{equation}
+
+Vi vet fra oppgave 4a følgende:
+\begin{equation}
+y''''(x) = \frac{f}{EI}
+\end{equation}
+\begin{equation}
+y^{(5)}(x) = 0
+\end{equation}
+\begin{equation}
+y^{(6)}(x) = 0
+\end{equation}
+Vi vet at både $y^{(5)} $ og $y^{(6)} $ er lik null, dermed er løsningen eksakt.
+

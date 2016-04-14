@@ -1,0 +1,15 @@
+\select@language {norsk}
+\select@language {norsk}
+\contentsline {section}{\numberline {1}Innledning}{4}{section.1}
+\contentsline {section}{\numberline {2}Teori og metode}{5}{section.2}
+\contentsline {subsection}{\numberline {2.1}Euler-Bernoullibjelken}{5}{subsection.2.1}
+\contentsline {section}{\numberline {3}Oppgaver}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Oppgave 1}{7}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}5.1.21}{7}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}5.1.22a}{8}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}Oppgave 6 a}{9}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Oppgave 4 a}{10}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Oppgave 4 b}{11}{subsection.3.4}
+\contentsline {section}{\numberline {A}Oppgave 2, Matlabkode}{12}{appendix.A}
+\contentsline {section}{\numberline {B}Oppgave 3, Matlabkode}{12}{appendix.B}
+\contentsline {section}{\numberline {C}Oppgave 5, Matlabkode}{13}{appendix.C}
